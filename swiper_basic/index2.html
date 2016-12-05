@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8">
+<title></title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Link Swiper's CSS -->
+<link rel="stylesheet" href="dist/css/swiper.min.css">
+<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+
+<!--<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>-->
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!--<script src="http://rawgit.com/ngryman/jquery.finger/v0.1.2/dist/jquery.finger.js"></script>-->
+<!-- rippler CSS -->
+<link rel="stylesheet" href="css/rippler.min.css">
+<!-- rippler js -->
+<script src="js/jquery.rippler.min.js"></script>
+
+<script>
+
+    $(document).ready(function() {
+
+      // Hide Header on on scroll down
+      var didScroll;
+      var lastScrollTop = 0;
+      var delta = 5;
+      var navbarHeight = $('header').outerHeight();
+
+      $(window).scroll(function(event){
+          didScroll = true;
+      });
+
+
+      setInterval(function() {
+          if (didScroll) {
+              hasScrolled();
+              didScroll = false;
+          }
+      }, 250);
+
+      function hasScrolled() {
+          var st = $(this).scrollTop();
+          
+          // Make sure they scroll more than delta
+          if(Math.abs(lastScrollTop - st) <= delta)
+              return;
+          
+          // If they scrolled down and are past the navbar, add class .nav-up.
+          // This is necessary so you never see what is "behind" the navbar.
+          if (st > lastScrollTop && st > navbarHeight){
+              // Scroll Down
+              $('header').removeClass('nav-down').addClass('nav-up');
+          } else {
+              // Scroll Up
+              if(st + $(window).height() < $(document).height()) {
+                  $('header').removeClass('nav-up').addClass('nav-down');
+              }
+          }
+          
+          lastScrollTop = st;
+      }
+
+      $('.tab').click(function () {
+        $('.tabopen').removeClass('tabopen');
+        $(this).addClass('tabopen');
+      });
+
+
+      $("#tab1").hover(function () {
+        $('#tab1').animate({
+          'background-color': '#d81f16'
+        },200);   $('#tab1').animate({
+          'background-color': '#e62117'
+        },200);
+
+      }, function () {
+        $('#tab1').animate({
+          'background-color': '#e62117'
+        },500);
+      });
+
+      $("#tab2").hover(function () {
+        $('#tab2').animate({
+          'background-color': '#d81f16'
+        },200);   $('#tab2').animate({
+          'background-color': '#e62117'
+        },200);
+
+      }, function () {
+        $('#tab2').animate({
+          'background-color': '#e62117'
+        },500);
+      });
+
+      $("#tab3").hover(function () {
+        $('#tab3').animate({
+          'background-color': '#d81f16'
+        },200);   $('#tab3').animate({
+          'background-color': '#e62117'
+        },200);
+
+      }, function () {
+        $('#tab3').animate({
+          'background-color': '#e62117'
+        },500);
+      });
+
+      $("#tab4").hover(function () {
+        $('#tab4').animate({
+          'background-color': '#d81f16'
+        },200);   $('#tab4').animate({
+          'background-color': '#e62117'
+        },200);
+
+      }, function () {
+        $('#tab4').animate({
+          'background-color': '#e62117'
+        },500);
+      });
+
+
+      $("#settings1").hover(function () {
+        $('#settings1').stop(true).animate({
+          'background-color': '#dddddd'
+        });
+      }, function () {
+        $('#settings1').stop(true).animate({
+          'background-color': '#FFFFFF'
+        });
+      });
+
+    });
+
+</script>
+
+<!-- styles -->
+<style>
+
+  body {
+      background: #000;
+      font-family: 'Roboto', sans-serif;
+      font-size: 14px;
+      color:#000;
+      margin: 0;
+      padding: 0;
+  }
+  .swiper-container.s1{
+      position: absolute;
+      top: 0px;
+      z-index: 10;
+      padding-top: 0px;
+      width: 100%;
+      height: 100vh;
+      margin: 0px auto;
+  }
+
+  .swiper-container.s2{
+      position: absolute;
+      top: 0px;
+      padding-top: 0px;
+      width: 100%;
+      height: 100vh;
+      margin: 0px auto;
+  }
+
+  .swiper-container.s3{
+      position: absolute;
+      top: 43px;
+      padding-top: 0px;
+      width: 100%;
+      //height: 2000px;
+      height: 100vh;
+      margin: 0px auto;
+      //margin: 20px auto;
+  }
+
+
+  .swiper-slide {
+      padding-top: 0px;
+      text-align: center;
+      font-size: 18px;
+      background: #fff;
+      //width: 100%;
+      //height: 2000px;
+      height: 100vh;
+      overflow: auto;
+      
+      /* Center slide text vertically */
+      /******************************************
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      -webkit-justify-content: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      -webkit-align-items: center;
+      align-items: center;
+      ******************************************/
+  }
+
+
+  header {
+      background: #f5b335;
+      height: 100px;
+      position: fixed;
+      top: 0;
+      transition: top 0.2s ease-in-out;
+      width: 100%;
+      padding: 0;
+      margin: 0;
+      z-index: 10;
+  }
+
+  .nav-up {
+      top: -50px;
+  }
+
+
+  button{
+    position: relative;
+    border: none;
+    outline:none;
+    cursor: pointer;
+    background: #89669b;
+    color: white;
+    padding: 18px 60px;
+    border-radius: 2px;
+    font-size: 22px;
+  }
+
+  .fab{
+    border-radius: 50%;
+    margin:0;
+    padding: 20px;
+  }
+
+  .tabs {
+
+    overflow-x: scroll;
+    overflow-y:hidden;
+    display:block;
+    position:absolute;
+    left:0px;
+    top:0px;
+    z-index: 1;
+    height:43px;
+    width: 100%;
+    background-color: #e62117;
+    //box-shadow: 0px 2px 10px gray,-1px 1px 5px gray, 1px 1px 5px gray;    
+    box-shadow: 0 4px 3px -2px rgba(0,0,0,0.5);
+  }
+
+  .tab_wrapper {
+
+    overflow-x: scroll;
+    overflow-y:hidden;
+    width:100%;
+    white-space:nowrap;
+    position:relative;
+    vertical-align: middle;
+    display: inline-block;
+  }
+
+  .tab {
+    font-family: Roboto;
+    //float: left;
+    width: 20% !important;
+    min-width: 100px;
+    display: inline-block;
+    height: 30px;
+    padding-top:10px;
+    //padding-bottom:0px;
+    color: #D3D3D3;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  .tabopen {
+    border-bottom: 3px #FFFFFF solid;
+    color: #FFFFFF !important; 
+  }
+
+  .menu_header {
+    font-family: Roboto;
+    height: 50px;
+    padding-top:10px;
+    padding-bottom:10px;
+    color: #FFFFFF;
+  }
+
+
+  span {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;      
+  }
+
+  ::-webkit-scrollbar { 
+      display: none; 
+  }
+
+</style>
+
+</head>
+
+<body onload="swiper.slideTo(1);"">
+
+  <header class="nav-down" style="display:none">
+  </header>
+
+  <div class="swiper-container s3">
+      <div class="swiper-wrapper clone-wrapper" style="display: none;">
+          <div class="swiper-slide clone-slide">slide 1</div>
+      </div>
+  </div>
+
+
+
+  <!-- Swiper -->
+  <div class="swiper-container s1">
+
+
+      <div class="swiper-wrapper">
+          <div class="swiper-slide" id="slide1" style="width:83%;">
+            Slide 1<br>Testing<br>
+            Slide 1<br>Testing<br>Testing information on this page
+            Slide 1<br>Testing<br><span onclick="alert('Alert!')">Alert!</span>
+            Slide 1<br><br>
+            <button onclick="swiper.slideTo(1)" class="rippler rippler-default">Close Menu</button><br>
+            <button onclick="swiper.slideTo(0)" class="rippler rippler-inverse" style="background:white; color:black;">Slide to 0</button>fill<br>fill<br>fill<br>fill<br>fill<br>fill<br>fill<br>fill<br>fill<br>fill<br>fill<br>fill<br>fill<br>fill<br>fill<br>fill<br>fill<br>fill<br>fill<br>fill<br>fill<br>fill<br>fill<br>fill<br>fill<br>fill<br>
+          </div>
+          <div class="swiper-slide" id="slide_main" style="opacity:1;background:rgba(0,0,0,0.0);">
+                <div class="swiper-container s2">
+                  <span class="stop-swiping2 EN"  style="position: absolute;top:0px;left:0px;height: 100vh;width:20px;z-index: 1000;"></span>
+
+                    <!-- Top Menu -->
+                  <div class="tabs stop-swiping stop-swiping2" id="tabs" >
+                    <!--<table width="100%" class="menu_header" id="menu_header" style="display: none">
+                      <tr>
+                      <td align="left" ><span style="padding-left:10px;padding-right:0px;vertical-align: middle"><img id="user_logo" src="img/footer-logo.png" height="43px"></span></td>
+                      <td align="left" ><span id="username_span" style="padding-left:2px;font-weight: bold;font-size: 20px;vertical-align: middle">HOME</span><span id="thumb_span" style="padding-left:12px;font-weight: bold;font-size: 20px;vertical-align: middle"></span></td>
+                      <td align="right" width="50%">
+                      <span style="padding-left:5px;padding-right:5px;vertical-align:middle" onclick="showUpload()"><img src="img/ic_upload_white.png" width="31px" /></span>
+                      <span style="padding-left:5px;padding-right:5px;vertical-align:middle;display:none"><img src="img/ic_search_white.png" width="31px" /></span>
+                      <span id="more" style="padding-left:5px;padding-right:5px;vertical-align:middle"><img src="img/ic_more_vert_white.png" width="31px" /></span></td>
+                      </tr>
+                    </table>-->
+
+                    <div class="tab_wrapper">
+                      <div id="tabhome" class="tab tabopen" style="cursor:hand">
+                      RECENT
+                      </div>
+                      <div id="tab1" class="tab" style="cursor:hand">
+                      R&B
+                      </div>
+                      <div id="tab2" class="tab">
+                      RAP
+                      </div>
+                      <div id="tab3" class="tab">
+                      HIP HOP
+                      </div>
+                      <div id="tab4" class="tab">
+                      OTHER
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="swiper-wrapper stop-swiping slide_main_wrapper" style="position:absolute;top:43px;left:0px" >
+                      <div class="swiper-slide">slide 1
+                        <img src="../../img/logo.png"/>
+                        <img src="../../img/logo.png"/>
+                        <img src="../../img/logo.png"/>
+                        <img src="../../img/logo.png"/>
+                        <img src="../../img/logo.png"/>
+                        <img src="../../img/logo.png"/>
+                        <img src="../../img/logo.png"/>
+                        <img src="../../img/logo.png"/>
+                        <img src="../../img/logo.png"/>
+                        <img src="../../img/logo.png"/>
+                      </div>
+                      <div class="swiper-slide" >slide 2</div>
+                      <div class="swiper-slide">slide 3</div>
+                      <div class="swiper-slide">slide 4</div>
+                  </div>
+                </div>
+          </div>
+      </div>
+  </div>
+
+  <!--<div class="swiper-container s2">
+      <div class="swiper-wrapper">
+          <div class="swiper-slide">slide 1</div>
+          <div class="swiper-slide">slide 2</div>
+          <div class="swiper-slide">slide 3</div>
+          <div class="swiper-slide">slide 4</div>
+      </div>
+  </div>-->
+
+  <!-- Swiper JS -->
+  <script src="dist/js/swiper.min.js"></script>
+
+    <!-- Initialize Swiper -->
+  <script language="javascript">
+    var clone_set = 0;
+    var state = '1';
+    var swiper3 = new Swiper('.s3', { /* Options here */
+      initialSlide: 0
+    });
+    var swiper2 = new Swiper('.s2', { /* Options here */
+      watchSlidesProgress : true,
+      speed: 150,
+      initialSlide: 0,
+      noSwipingClass: 'stop-swiping2',
+      onProgress: function(swiper2, progress){
+
+        //$("#tracker").html(swiper.slides[2].progress);
+        if(swiper2.slides[0].progress < 0){
+          state = '1';
+          swiper2.params.followFinger = false;
+          swiper2.params.watchSlidesProgress = false;
+          slide_to_main(0);
+        }
+
+        if(swiper2.slides[3].progress > 0){
+          state = '1';
+          swiper2.params.followFinger = false;
+          swiper2.params.watchSlidesProgress = false;
+          slide_to_main(3);
+        }
+
+
+      }
+
+    });
+
+    var swiper = new Swiper('.s1',{
+
+      watchSlidesProgress : true,
+      slidesPerView: 'auto',
+      speed: 150,
+      initialSlide: 0,
+      noSwipingClass: 'stop-swiping',
+      onInit: function(swiper){
+        //swiper.slideTo(1);
+      },
+      onProgress: function(swiper, progress){
+
+        //$("#tracker").html(swiper.slides[2].progress);
+        if(swiper.slides[0].progress < 0){
+          state = '0';
+          swiper.params.followFinger = false;
+          swiper.params.watchSlidesProgress = false;
+          slide_to_menu(0);
+        }
+
+        if(swiper.slides[1].progress > 0){
+          state = '1';
+          swiper.params.followFinger = false;
+          swiper.params.watchSlidesProgress = false;
+          slide_to_menu(1);
+        }
+
+        if(state == '0'){
+          for (var i = 0; i < swiper2.slides.length; i++){
+            swiper2.slides[i].style.opacity = 0.5+0.5*swiper.slides[0].progress;
+          }
+          swiper3.slides[0].style.opacity = 0.5+0.5*swiper.slides[0].progress;
+          if(clone_set < 1){
+            var clone_text = $(".slide_main_wrapper .swiper-slide-active").html();
+            $(".clone-slide").html(clone_text);
+            var s = $(".slide_main_wrapper .swiper-slide-active").scrollTop();
+            $(".clone-wrapper").show();
+            $(".clone-slide").scrollTop(s);
+            clone_set=1;
+          }
+
+          $(".slide_main_wrapper").css('opacity', '0');
+          //$(".slide_main_wrapper").hide();
+        }
+        if(state == '1'){
+          for (var j = 0; j < swiper2.slides.length; j++){
+            swiper2.slides[j].style.opacity = 0.5+0.5*swiper.slides[0].progress;
+          }
+          swiper3.slides[0].style.opacity = 0.5+0.5*swiper.slides[0].progress;
+          if(clone_set < 1){
+            var clone_text = $(".slide_main_wrapper .swiper-slide-active").html();
+            $(".clone-slide").html(clone_text);
+            var s = $(".slide_main_wrapper .swiper-slide-active").scrollTop();
+            $(".clone-wrapper").show();
+            $(".clone-slide").scrollTop(s);
+            clone_set=1;
+          }
+
+          $(".slide_main_wrapper").css('opacity', '0');
+          //$(".tabs").css('z-index', '0');
+          //$(".slide_main_wrapper").hide();
+          //swiper.slides[1].style.opacity = 0.5+0.5*swiper.slides[0].progress;
+        }
+
+      }
+
+    });
+
+
+    swiper.once('onTouchStart', function () {
+        disableNext();
+    });
+
+
+    swiper.on('onTouchEnd', function () {
+      //alert(swiper.activeIndex);
+      swiper.params.followFinger = true;
+      swiper.params.watchSlidesProgress = true;
+      if(swiper.activeIndex == '0'){
+        swiper.slideTo(0); 
+      }
+      else{
+        swiper.slideTo(1);
+        $(".slide_main_wrapper").css('opacity', '1');
+      }
+
+
+    });
+
+    swiper.on('onTransitionEnd', function () {
+      //alert(swiper.activeIndex);
+      clone_set=0;
+      swiper.params.followFinger = true;
+      swiper.params.watchSlidesProgress = true;
+  
+
+      if(swiper.activeIndex == '0'){
+        state = "0";
+        $(".slide_main_wrapper").removeClass("stop-swiping");
+        $(".slide_main_wrapper").addClass("stop-swiping2");
+        enableNext();
+
+      }
+      else{
+        state = '1';
+        $(".clone-wrapper").hide();
+        $(".slide_main_wrapper").css('opacity', '1');
+        $(".slide_main_wrapper").removeClass("stop-swiping2");
+        $(".slide_main_wrapper").addClass("stop-swiping");
+        disableNext();
+      }
+
+    });
+
+
+    function disableNext(){
+      //setTimeout(function(){
+
+
+      if(swiper.activeIndex == '1'){ 
+        //swiper.params.allowSwipeToNext = false;
+        //swiper.params.allowSwipeToPrev = true;
+        swiper.params.followFinger = true;
+        swiper.params.watchSlidesProgress = true;
+        //And reinit
+        swiper.reInit();
+      }
+      if(swiper.activeIndex == '2'){
+        swiper.slideTo(1); 
+        //swiper.params.allowSwipeToNext = false;
+        //swiper.params.allowSwipeToPrev = true;
+        swiper.params.followFinger = true;
+        swiper.params.watchSlidesProgress = true;
+        //And reinit
+        swiper.reInit();
+      }
+      if(swiper.activeIndex == '3'){
+        swiper.slideTo(1); 
+        //swiper.params.allowSwipeToNext = false;
+        //swiper.params.allowSwipeToPrev = true;
+        swiper.params.followFinger = true;
+        swiper.params.watchSlidesProgress = true;
+        //And reinit
+        swiper.reInit();
+      }
+
+          //}, 20);
+    }
+
+    function enableNext(){
+
+      //setTimeout(function(){
+            //swiper.params.allowSwipeToNext = true;
+            //swiper.params.allowSwipeToPrev = false;
+      swiper.params.followFinger = true;
+      swiper.params.watchSlidesProgress = true;
+      //And reinit
+      swiper.reInit();
+          //}, 20);
+    }
+
+    function slide_to_menu(slide){
+      swiper.params.followFinger = true;
+      swiper.params.watchSlidesProgress = true;
+      swiper.reInit();
+
+      /*setTimeout(function(){ 
+        swiper.slideTo(slide); 
+      }, 350);*/
+      swiper.slideTo(slide);
+    }
+
+    function slide_to_main(slide){
+      swiper2.params.followFinger = true;
+      swiper2.params.watchSlidesProgress = true;
+      swiper2.reInit();
+
+      /*setTimeout(function(){ 
+        swiper.slideTo(slide); 
+      }, 350);*/
+      swiper2.slideTo(slide);
+    }
+
+
+    $(document).ready(function() {
+        
+      $(".rippler").rippler({     
+          effectClass      :  'rippler-effect'
+          ,effectSize      :  16      // Default size (width & height)
+          ,addElement      :  'div'   // e.g. 'svg'(feature)
+          ,duration        :  200
+      });
+
+      //alert($("#nine").offset().left);
+    });
+
+  </script>
+</body>
+</html>

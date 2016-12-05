@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Waves example</title>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="dist/waves.css" />
+  <!--<link rel="stylesheet" type="text/css" href="css/mdb.css" />-->
+
+  <style type="text/css">
+
+    @import url("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css");
+    @import url(https://fonts.googleapis.com/css?family=Raleway:400,500);
+
+    .top-box {
+        box-shadow: 0 -6px 9px -7px rgba(0,0,0,0.7);
+    }
+    .left-box {
+        box-shadow: -7px 0 9px -7px rgba(0,0,0,0.7);
+    }
+    .right-box {
+        box-shadow: 7px 0 9px -7px rgba(0,0,0,0.7);
+    }
+    .bottom-box {
+        box-shadow: 0 7px 9px -7px rgba(0,0,0,0.7);
+    }
+
+  </style>
+
+</head>
+
+<body>
+<br>
+  <div class="center top-box"><br>
+    <div class="btn button btn-primary btn-lg">Click me!</div>
+    <div type="button" class="btn tab btn-default btn-lg" style="width: 200px">TAB</div>
+    <a class="btn-floating btn-large waves-effect waves-light orange"><i class="material-icons">verified_user</i></a>
+  </div>
+
+  <script type="text/javascript">
+ 
+  	$(document).ready(function() {
+      var config = {
+          duration: 800,
+          delay: 0
+      };
+                      
+      // Initialise Waves with the config
+      Waves.attach('.button', 'waves-light');
+      Waves.attach('.tab', 'waves-float');
+      Waves.init(config);
+
+  	});
+
+  </script>
+
+  <script type="text/javascript" src="dist/waves.js"></script>
+  <!--<script type="text/javascript" src="js/mdb.js"></script>-->
+
+</body>
+
+</html>

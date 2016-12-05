@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Waves example</title>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+        <link rel="stylesheet" type="text/css" href="dist/waves.min.css" />
+        <style type="text/css">
+			@import url("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css");
+
+
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,500);
+
+.center {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.wavy {
+  display: inline-block;
+  width: 250px;
+  height: 74px;
+  font-family: 'Raleway', sans-serif;
+  font-size: 200%;
+  -webkit-border-radius: 50px;
+  border-radius: 50px;
+  border: 2px solid #53F39A;
+  background: transparent;
+  color: #53F39A;
+  outline: none;
+  -moz-transition: all 2.9s cubic-bezier(0, 0, 1, 0.07);
+  -o-transition: all 2.9s cubic-bezier(0, 0, 1, 0.07);
+  -webkit-transition: all 2.9s cubic-bezier(0, 0, 1, 0.07);
+  transition: all 2.9s cubic-bezier(0, 0, 1, 0.07);
+  -moz-transition-delay: 12s;
+  -o-transition-delay: 12s;
+  -webkit-transition-delay: 12s;
+  transition-delay: 12s;
+}
+
+.wavy:focus {
+  background: #53F39A;
+  color: white;
+   -moz-transition: all .2s cubic-bezier(0, 0, 1, 0.07);
+  -o-transition: all .2s cubic-bezier(0, 0, 1, 0.07);
+  -webkit-transition: all .2s cubic-bezier(0, 0, 1, 0.07);
+  transition: all .2s cubic-bezier(0, 0, 1, 0.07);
+  -moz-transition-delay: .2s;
+  -o-transition-delay: .2s;
+  -webkit-transition-delay: .2s;
+  transition-delay: .2s;
+  
+}
+
+
+/*********************
+  Waves
+**********************/
+
+
+/*!
+ * Waves v0.6.0
+ * http://fian.my.id/Waves
+ *
+ * Copyright 2014 Alfiana E. Sibuea and other contributors
+ * Released under the MIT license
+ * https://github.com/fians/Waves/blob/master/LICENSE
+ */
+
+.waves-effect {
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+  overflow: hidden;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  vertical-align: middle;
+  z-index: 1;
+  will-change: opacity, transform;
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+  -ms-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+}
+
+.waves-effect .waves-ripple {
+  position: absolute;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  margin-top: -10px;
+  margin-left: -10px;
+  opacity: 0;
+  background: rgba(0, 0, 0, 0.2);
+  -webkit-transition: all 0.7s ease-out;
+  -moz-transition: all 0.7s ease-out;
+  -o-transition: all 0.7s ease-out;
+  -ms-transition: all 0.7s ease-out;
+  transition: all 0.7s ease-out;
+  -webkit-transition-property: -webkit-transform, opacity;
+  -moz-transition-property: -moz-transform, opacity;
+  -o-transition-property: -o-transform, opacity;
+  transition-property: transform, opacity;
+  -webkit-transform: scale(0);
+  -moz-transform: scale(0);
+  -ms-transform: scale(0);
+  -o-transform: scale(0);
+  transform: scale(0);
+  pointer-events: none;
+}
+
+.waves-effect.waves-light .waves-ripple {
+  background-color: rgba(255, 255, 255, 0.45);
+}
+
+.waves-effect.waves-greeny .waves-ripple {
+  background-color: rgba(83, 243, 154, 0.7);
+}
+
+.waves-effect.waves-red .waves-ripple {
+  background-color: rgba(244, 67, 54, 0.7);
+}
+
+.waves-effect.waves-yellow .waves-ripple {
+  background-color: rgba(255, 235, 59, 0.7);
+}
+
+.waves-effect.waves-orange .waves-ripple {
+  background-color: rgba(255, 152, 0, 0.7);
+}
+
+.waves-effect.waves-purple .waves-ripple {
+  background-color: rgba(156, 39, 176, 0.7);
+}
+
+.waves-effect.waves-green .waves-ripple {
+  background-color: rgba(76, 175, 80, 0.7);
+}
+
+.waves-effect.waves-teal .waves-ripple {
+  background-color: rgba(0, 150, 136, 0.7);
+}
+
+.waves-notransition {
+  -webkit-transition: none !important;
+  -moz-transition: none !important;
+  -o-transition: none !important;
+  -ms-transition: none !important;
+  transition: none !important;
+}
+
+.waves-circle {
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-mask-image: -webkit-radial-gradient(circle, white 100%, black 100%);
+}
+
+.waves-input-wrapper {
+  border-radius: 0.2em;
+  vertical-align: bottom;
+}
+
+.waves-input-wrapper .waves-button-input {
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.waves-circle {
+  text-align: center;
+  width: 2.5em;
+  height: 2.5em;
+  line-height: 2.5em;
+  border-radius: 50%;
+  -webkit-mask-image: none;
+}
+
+.waves-block {
+  display: block;
+}
+
+
+/* Firefox Bug: link not triggered */
+
+a.waves-effect .waves-ripple {
+  z-index: -1;
+}
+
+
+/*********************
+  Media Query Classes
+**********************/
+
+@media only screen and (max-width: 600px) {
+  .center-on-small-only {
+    text-align: center;
+  }
+}
+
+.no-margin {
+  margin: 0;
+  padding: 0;
+}
+
+.space-30 {
+  height: 30px;
+}
+
+.vcenter {
+  display: inline-block;
+  vertical-align: middle;
+  float: none;
+}
+
+.vertical-center {
+  margin: 0;
+  min-height: 100%;
+  /* Fallback for vh unit */
+  min-height: 100vh;
+  /* You might also want to use
+                        'height' property instead.
+                        
+                        Note that for percentage values of
+                        'height' or 'min-height' properties,
+                        the 'height' of the parent element
+                        should be specified explicitly.
+  
+                        In this case the parent of '.vertical-center'
+                        is the <body> element */
+  /* Make it a flex container */
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  /* Align the bootstrap's container vertically */
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -moz-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  /* In legacy web browsers such as Firefox 9
+     we need to specify the width of the flex container */
+  width: 100%;
+  /* Also 'margin: 0 auto' doesn't have any effect on flex items in such web browsers
+     hence the bootstrap's container won't be aligned to the center anymore.
+  
+     Therefore, we should use the following declarations to get it centered again */
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+
+
+
+        </style>
+
+    </head>
+    <body>
+
+<div class="center">
+  <button type="button" onClick="clk()" class=" wavy waves-effect waves-greeny">Click me!</button>
+</div>
+ 
+
+ <script type="text/javascript">
+ 
+ $(document).ready(function() {
+
+ $(".wavy").click(function() {
+    setTimeout(function(){
+    $(".wavy").blur()
+  },900);
+});
+});
+
+/*!
+ * Waves v0.7.5
+ * http://fian.my.id/Waves
+ *
+ * Copyright 2014-2016 Alfiana E. Sibuea and other contributors
+ * Released under the MIT license
+ * https://github.com/fians/Waves/blob/master/LICENSE
+ */
+
+(function(window) {
+  'use strict';
+
+  var Waves = Waves || {};
+  var $$ = document.querySelectorAll.bind(document);
+
+  // Find exact position of element
+  function isWindow(obj) {
+    return obj !== null && obj === obj.window;
+  }
+
+  function getWindow(elem) {
+    return isWindow(elem) ? elem : elem.nodeType === 9 && elem.defaultView;
+  }
+
+  function offset(elem) {
+    var docElem, win,
+      box = {
+        top: 0,
+        left: 0
+      },
+      doc = elem && elem.ownerDocument;
+
+    docElem = doc.documentElement;
+
+    if (typeof elem.getBoundingClientRect !== typeof undefined) {
+      box = elem.getBoundingClientRect();
+    }
+    win = getWindow(doc);
+    return {
+      top: box.top + win.pageYOffset - docElem.clientTop,
+      left: box.left + win.pageXOffset - docElem.clientLeft
+    };
+  }
+
+  function convertStyle(obj) {
+    var style = '';
+
+    for (var a in obj) {
+      if (obj.hasOwnProperty(a)) {
+        style += (a + ':' + obj[a] + ';');
+      }
+    }
+
+    return style;
+  }
+
+  var Effect = {
+
+    // Effect delay
+    duration: 750,
+
+    show: function(e, element) {
+
+      // Disable right click
+      if (e.button === 2) {
+        return false;
+      }
+
+      var el = element || this;
+
+      // Create ripple
+      var ripple = document.createElement('div');
+      ripple.className = 'waves-ripple';
+      el.appendChild(ripple);
+
+      // Get click coordinate and element witdh
+      var pos = offset(el);
+      var relativeY = (e.pageY - pos.top);
+      var relativeX = (e.pageX - pos.left);
+      var scale = 'scale(' + ((el.clientWidth / 100) * 10) + ')';
+
+      // Support for touch devices
+      if ('touches' in e) {
+        relativeY = (e.touches[0].pageY - pos.top);
+        relativeX = (e.touches[0].pageX - pos.left);
+      }
+
+      // Attach data to element
+      ripple.setAttribute('data-hold', Date.now());
+      ripple.setAttribute('data-scale', scale);
+      ripple.setAttribute('data-x', relativeX);
+      ripple.setAttribute('data-y', relativeY);
+
+      // Set ripple position
+      var rippleStyle = {
+        'top': relativeY + 'px',
+        'left': relativeX + 'px'
+      };
+
+      ripple.className = ripple.className + ' waves-notransition';
+      ripple.setAttribute('style', convertStyle(rippleStyle));
+      ripple.className = ripple.className.replace('waves-notransition', '');
+
+      // Scale the ripple
+      rippleStyle['-webkit-transform'] = scale;
+      rippleStyle['-moz-transform'] = scale;
+      rippleStyle['-ms-transform'] = scale;
+      rippleStyle['-o-transform'] = scale;
+      rippleStyle.transform = scale;
+      rippleStyle.opacity = '1';
+
+      rippleStyle['-webkit-transition-duration'] = Effect.duration + 'ms';
+      rippleStyle['-moz-transition-duration'] = Effect.duration + 'ms';
+      rippleStyle['-o-transition-duration'] = Effect.duration + 'ms';
+      rippleStyle['transition-duration'] = Effect.duration + 'ms';
+
+      rippleStyle['-webkit-transition-timing-function'] = 'cubic-bezier(0.250, 0.460, 0.450, 0.940)';
+      rippleStyle['-moz-transition-timing-function'] = 'cubic-bezier(0.250, 0.460, 0.450, 0.940)';
+      rippleStyle['-o-transition-timing-function'] = 'cubic-bezier(0.250, 0.460, 0.450, 0.940)';
+      rippleStyle['transition-timing-function'] = 'cubic-bezier(0.250, 0.460, 0.450, 0.940)';
+
+      ripple.setAttribute('style', convertStyle(rippleStyle));
+    },
+
+    hide: function(e) {
+      TouchHandler.touchup(e);
+
+      var el = this;
+      var width = el.clientWidth * 1.4;
+
+      // Get first ripple
+      var ripple = null;
+      var ripples = el.getElementsByClassName('waves-ripple');
+      if (ripples.length > 0) {
+        ripple = ripples[ripples.length - 1];
+      } else {
+        return false;
+      }
+
+      var relativeX = ripple.getAttribute('data-x');
+      var relativeY = ripple.getAttribute('data-y');
+      var scale = ripple.getAttribute('data-scale');
+
+      // Get delay beetween mousedown and mouse leave
+      var diff = Date.now() - Number(ripple.getAttribute('data-hold'));
+      var delay = 350 - diff;
+
+      if (delay < 0) {
+        delay = 0;
+      }
+
+      // Fade out ripple after delay
+      setTimeout(function() {
+        var style = {
+          'top': relativeY + 'px',
+          'left': relativeX + 'px',
+          'opacity': '0',
+
+          // Duration
+          '-webkit-transition-duration': Effect.duration + 'ms',
+          '-moz-transition-duration': Effect.duration + 'ms',
+          '-o-transition-duration': Effect.duration + 'ms',
+          'transition-duration': Effect.duration + 'ms',
+          '-webkit-transform': scale,
+          '-moz-transform': scale,
+          '-ms-transform': scale,
+          '-o-transform': scale,
+          'transform': scale,
+        };
+
+        ripple.setAttribute('style', convertStyle(style));
+
+        setTimeout(function() {
+          try {
+            el.removeChild(ripple);
+          } catch (e) {
+            return false;
+          }
+        }, Effect.duration);
+      }, delay);
+    },
+
+    // Little hack to make <input> can perform waves effect
+    wrapInput: function(elements) {
+      for (var a = 0; a < elements.length; a++) {
+        var el = elements[a];
+
+        if (el.tagName.toLowerCase() === 'input') {
+          var parent = el.parentNode;
+
+          // If input already have parent just pass through
+          if (parent.tagName.toLowerCase() === 'i' && parent.className.indexOf('waves-effect') !== -1) {
+            continue;
+          }
+
+          // Put element class and style to the specified parent
+          var wrapper = document.createElement('i');
+          wrapper.className = el.className + ' waves-input-wrapper';
+
+          var elementStyle = el.getAttribute('style');
+
+          if (!elementStyle) {
+            elementStyle = '';
+          }
+
+          wrapper.setAttribute('style', elementStyle);
+
+          el.className = 'waves-button-input';
+          el.removeAttribute('style');
+
+          // Put element as child
+          parent.replaceChild(wrapper, el);
+          wrapper.appendChild(el);
+        }
+      }
+    }
+  };
+
+  /**
+   * Disable mousedown event for 500ms during and after touch
+   */
+  var TouchHandler = {
+    /* uses an integer rather than bool so there's no issues with
+     * needing to clear timeouts if another touch event occurred
+     * within the 500ms. Cannot mouseup between touchstart and
+     * touchend, nor in the 500ms after touchend. */
+    touches: 0,
+    allowEvent: function(e) {
+      var allow = true;
+
+      if (e.type === 'touchstart') {
+        TouchHandler.touches += 1; //push
+      } else if (e.type === 'touchend' || e.type === 'touchcancel') {
+        setTimeout(function() {
+          if (TouchHandler.touches > 0) {
+            TouchHandler.touches -= 1; //pop after 500ms
+          }
+        }, 500);
+      } else if (e.type === 'mousedown' && TouchHandler.touches > 0) {
+        allow = false;
+      }
+
+      return allow;
+    },
+    touchup: function(e) {
+      TouchHandler.allowEvent(e);
+    }
+  };
+
+  /**
+   * Delegated click handler for .waves-effect element.
+   * returns null when .waves-effect element not in "click tree"
+   */
+  function getWavesEffectElement(e) {
+    if (TouchHandler.allowEvent(e) === false) {
+      return null;
+    }
+
+    var element = null;
+    var target = e.target || e.srcElement;
+
+    while (target.parentElement !== null) {
+      if (!(target instanceof SVGElement) && target.className.indexOf('waves-effect') !== -1) {
+        element = target;
+        break;
+      } else if (target.classList.contains('waves-effect')) {
+        element = target;
+        break;
+      }
+      target = target.parentElement;
+    }
+
+    return element;
+  }
+
+  /**
+   * Bubble the click and show effect if .waves-effect elem was found
+   */
+  function showEffect(e) {
+    var element = getWavesEffectElement(e);
+
+    if (element !== null) {
+      Effect.show(e, element);
+
+      if ('ontouchstart' in window) {
+        element.addEventListener('touchend', Effect.hide, false);
+        element.addEventListener('touchcancel', Effect.hide, false);
+      }
+
+      element.addEventListener('mouseup', Effect.hide, false);
+      element.addEventListener('mouseleave', Effect.hide, false);
+    }
+  }
+
+  Waves.displayEffect = function(options) {
+    options = options || {};
+
+    if ('duration' in options) {
+      Effect.duration = options.duration;
+    }
+
+    //Wrap input inside <i> tag
+    Effect.wrapInput($$('.waves-effect'));
+
+    if ('ontouchstart' in window) {
+      document.body.addEventListener('touchstart', showEffect, false);
+    }
+
+    document.body.addEventListener('mousedown', showEffect, false);
+  };
+
+  /**
+   * Attach Waves to an input element (or any element which doesn't
+   * bubble mouseup/mousedown events).
+   *   Intended to be used with dynamically loaded forms/inputs, or
+   * where the user doesn't want a delegated click handler.
+   */
+  Waves.attach = function(element) {
+    //FUTURE: automatically add waves classes and allow users
+    // to specify them with an options param? Eg. light/classic/button
+    if (element.tagName.toLowerCase() === 'input') {
+      Effect.wrapInput([element]);
+      element = element.parentElement;
+    }
+
+    if ('ontouchstart' in window) {
+      element.addEventListener('touchstart', showEffect, false);
+    }
+
+    element.addEventListener('mousedown', showEffect, false);
+  };
+
+  window.Waves = Waves;
+
+  document.addEventListener('DOMContentLoaded', function() {
+    Waves.displayEffect();
+  }, false);
+
+})(window);	
+
+ </script>
+
+        <script type="text/javascript" src="dist/waves.min.js"></script>
+    </body>
+</html>

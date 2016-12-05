@@ -1,0 +1,278 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="dist/css/swiper.min.css">
+    <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="http://rawgit.com/ngryman/jquery.finger/v0.1.2/dist/jquery.finger.js"></script>
+
+<script>
+
+    $(document).ready(function() {
+
+        // Hide Header on on scroll down
+        var didScroll;
+        var lastScrollTop = 0;
+        var delta = 5;
+        var navbarHeight = $('header').outerHeight();
+
+        $(window).scroll(function(event){
+            didScroll = true;
+        });
+
+
+        setInterval(function() {
+            if (didScroll) {
+                hasScrolled();
+                didScroll = false;
+            }
+        }, 250);
+
+        function hasScrolled() {
+            var st = $(this).scrollTop();
+            
+            // Make sure they scroll more than delta
+            if(Math.abs(lastScrollTop - st) <= delta)
+                return;
+            
+            // If they scrolled down and are past the navbar, add class .nav-up.
+            // This is necessary so you never see what is "behind" the navbar.
+            if (st > lastScrollTop && st > navbarHeight){
+                // Scroll Down
+                $('header').removeClass('nav-down').addClass('nav-up');
+            } else {
+                // Scroll Up
+                if(st + $(window).height() < $(document).height()) {
+                    $('header').removeClass('nav-up').addClass('nav-down');
+                }
+            }
+            
+            lastScrollTop = st;
+        }
+
+
+
+
+
+    });
+
+</script>
+
+<!-- styles -->
+<style>
+
+    body {
+        background: #fff;
+        font-family: 'Roboto', sans-serif;
+        font-size: 14px;
+        color:#000;
+        margin: 0;
+        padding: 0;
+    }
+    .swiper-container {
+        padding-top: 100px;
+        width: 100%;
+        height: 2000px;
+        margin: 20px auto;
+    }
+    .swiper-slide {
+        text-align: center;
+        font-size: 18px;
+        background: #fff;
+        width: 100%;
+        height: 2000px;
+        
+        /* Center slide text vertically */
+        /******************************************
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+        ******************************************/
+    }
+
+
+    header {
+        background: #f5b335;
+        height: 100px;
+        position: fixed;
+        top: 0;
+        transition: top 0.2s ease-in-out;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        z-index: 10;
+    }
+
+    .nav-up {
+        top: -50px;
+    }
+
+
+    button{
+      position: relative;
+      border: none;
+      outline:none;
+      cursor: pointer;
+      background: #89669b;
+      color: white;
+      padding: 18px 60px;
+      border-radius: 2px;
+      font-size: 22px;
+    }
+
+    .fab{
+      border-radius: 50%;
+      margin:0;
+      padding: 20px;
+    }
+
+    .material{
+      position:relative;
+      color:white;
+      margin: 20px auto;
+      height:400px;
+      width:500px;
+      background:#f45673;
+      
+    }
+
+    .ripple{
+      overflow:hidden;
+    }
+
+    .ripple-effect{
+      position: absolute;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      background: white;
+
+        
+      animation: ripple-animation 2s;
+    }
+
+
+    @keyframes ripple-animation {
+        from {
+          transform: scale(1);
+          opacity: 0.4;
+        }
+        to {
+          transform: scale(100);
+          opacity: 0;
+        }
+    }
+
+</style>
+
+</head>
+
+<body>
+
+    <header class="nav-down">
+    </header>
+
+    <!-- Swiper -->
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide" id="nine">Slide 1<br>Testing<br>
+            Slide 1<br>Testing<br>Testing information on this page
+            Slide 1<br>Testing<br><span onclick="alert('Alert!')">Alert!</span>
+            Slide 1<br>Testing<br>
+            <button onclick="slide_to(7)" class="ripple">Slide to 8</button><br>
+            <button onclick="slide_to(8)" class="ripple" data-ripple-color="#89669b" style="background:white; color:black;">Slide to 9</button>
+            </div>
+            <div class="swiper-slide">Slide 2</div>
+            <div class="swiper-slide">Slide 3</div>
+            <div class="swiper-slide">Slide 4</div>
+            <div class="swiper-slide">Slide 5</div>
+            <div class="swiper-slide">Slide 6</div>
+            <div class="swiper-slide">Slide 7</div>
+            <div class="swiper-slide">Slide 8<br><span onclick="slide_to(0)"><a href="#">Slide to 1</a></span></div>
+            <div class="swiper-slide">Slide 9<br><button onclick="slide_to(0)" class="ripple">Slide to 1</button><br></div>
+            <div class="swiper-slide">Slide 10</div>
+        </div>
+    </div>
+
+    <!-- Swiper JS -->
+    <script src="dist/js/swiper.min.js"></script>
+
+    <!-- Initialize Swiper -->
+    <script>
+    var swiper = new Swiper('.swiper-container',{
+
+      watchSlidesProgress : true,
+      onProgress: function(swiper, progress){
+        for (var i = 0; i < swiper.slides.length; i++){
+          var slide = swiper.slides[i];
+          es = slide.style;
+          es.webkitTransform = es.MsTransform = es.msTransform = es.MozTransform = es.OTransform = es.transform = 'rotate('+360*slide.progress+'deg)';
+        }
+      }
+
+    });
+
+    function slide_to(slide){
+        swiper.slideTo(slide);
+    }
+
+
+    (function (window, $) {
+      
+      $(function() {
+
+
+
+      
+        
+
+        $('.ripple').on('mousedown', function (event) {
+          event.preventDefault();
+          
+          var $div = $('<div/>'),
+              btnOffset = $(this).offset(),
+                xPos = event.pageX - btnOffset.left,
+                yPos = event.pageY - btnOffset.top;
+          
+
+          
+          $div.addClass('ripple-effect');
+          var $ripple = $(".ripple-effect");
+          
+          $ripple.css("height", $(this).height());
+          $ripple.css("width", $(this).height());
+          $div
+            .css({
+              top: yPos - ($ripple.height()/2),
+              left: xPos - ($ripple.width()/2),
+              background: $(this).data("ripple-color")
+            }) 
+            .appendTo($(this));
+
+          window.setTimeout(function(){
+            $div.remove();
+          }, 2000);
+        });
+        
+      });
+      
+    })(window, jQuery);
+
+    </script>
+</body>
+</html>
